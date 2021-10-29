@@ -1,5 +1,7 @@
 ﻿using MathNet.Numerics.Integration;
 using MathNet.Symbolics;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace testapp2.Services
 {
     public class IntegralService
     {
+        [Produces("application/json")]
         public IntegralOutput Calculate(IntegralInput integralInput)
         {
             Func<double, double> f = SymbolicExpression.Parse(integralInput.Integral).Compile("x");
