@@ -50,7 +50,7 @@ namespace testapp2
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "testapp2 v1"));
             }
             app.UseCors("MyPolicy");
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

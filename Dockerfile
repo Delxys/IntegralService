@@ -8,10 +8,18 @@ WORKDIR /src
 COPY ./ .
 
 # Restore
-RUN dotnet restore testapp2.sln --configfile ./.nuget/nuget.config
+RUN dotnet restore testapp2.sln
 
 # Build
 RUN dotnet build testapp2.sln -c Release -o ./publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine
+
+# Set app directory
+WORKDIR /app
+
+# Copy files with default permissions
+COPY --from=build /src/publish .
 
 # Expose app port
 EXPOSE 5000
